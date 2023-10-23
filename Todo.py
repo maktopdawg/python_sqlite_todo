@@ -16,7 +16,7 @@ class Todo:
                 Return a unique id with five different digits.
         """
         uuid = set()
-        while len(uuid) != 5:
+        while len(uuid) != 7:
             uuid.add(random.randint(0,9))
 
         return ''.join(str(i) for i in uuid)

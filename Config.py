@@ -17,32 +17,16 @@ class DatabaseOperations:
         except Exception as e:
             print(e)
 
+    
+    def create(self, name: str, cols:list, msg:str):
+        column_definitions = [f"{col[0]} {col[1]} {' '.join(col[2:])}" for col in cols]
+        columns = ', '.join(column_definitions)
 
-    def create_table(self):
-        """
-            Creates a table in the database
-        """
         self.open_db()
         self.conn.cursor()
-        self.conn.execute('CREATE TABLE TODOS (ID TEXT PRIMARY KEY NOT NULL, TODO TEXT NOT NULL, COMPLETED BOOLEAN NOT NULL)')
+        self.conn.execute(f"CREATE TABLE {name.upper()} ({columns})")
         self.conn.commit()
-        print('Table created successfully')
-
-    
-    def create(self, name:str, cols:list(list()), types:list()):
-        q = f"CREATE TABLE {name.upper()} ({', '.join({j for j in i} for i in cols)})"
-
-
-    # def insert_values(self, id: str, todo: str, completed: bool):
-    #     """
-    #         Inserts values passed in as arguments into the database
-
-    #         args:
-    #             Recieves the todo id, todo string, and todo completion status
-    #     """
-    #     self.cursor.execute('INSERT INTO TODOS (ID, TODO, COMPLETED) VALUES (?, ?, ?)', (id, todo, completed))
-    #     self.conn.commit()
-    #     print("Record created successfully")
+        print(msg)
 
 
     def insert(self, table:str, cols:list(), values:list(), msg:str):
