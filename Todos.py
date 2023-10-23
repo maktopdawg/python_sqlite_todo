@@ -22,12 +22,20 @@ class Todos:
         self.todos.append(todo_obj)
 
     
+    def insert(self, table:str, cols:list(), values:list(), msg:str):
+        self.db.insert(table, cols, values, msg)
+
+    
+    # def create(self, )
+
+
+    def select(self,cols:list(), table:str, msg:str):
+        self.db.select_values(cols, table, msg)
+
+    
 db = DatabaseOperations()
 # db.create_table()
 todos = Todos()
-todos.create_todo('Learn OOP')
-for i in range(5):
-    todos.create_todo(random.choice(['hey', 'love', 'the', 'Key', 'primary']))
-print(todos.todos)
-# todos.todos[0][2] = True
-# print(todos.todos)
+# uuid = todos.todos.id
+todos.select(['ID', 'TODO', 'COMPLETED'], 'TODOs', 'Select Operation Completed Successfully')
+# todos.insert('TODOS', ['ID', 'TODO', 'COMPLETED'], [uuid,'Just Chilling', False], 'Record created successfully')
